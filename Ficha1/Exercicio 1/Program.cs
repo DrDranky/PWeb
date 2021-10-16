@@ -27,18 +27,43 @@ namespace Ex1
             Console.WriteLine(bob);
             bob.ShowAllTasks();
             
+            
+            // a)
             Console.WriteLine("\n\na) Delayed List");
             bob.ShowDelayedTasks();
             
-            Console.WriteLine("\n\nb) Ordered low to high  priority list");
+            
+            // first interpretation of b) 
+            Console.WriteLine("\n\nb) First interpretation, Ordered low to high  priority list");
             bob.ShowTasksLowToHighPriority();
             
+            // second interpretation of b)
+            Console.WriteLine("\nb) second interpretation...");
+            bob.ShowTasksWithPriority(Task.Priority.Low);            
+            bob.ShowTasksWithPriority(Task.Priority.Medium);            
+            bob.ShowTasksWithPriority(Task.Priority.High);            
+            
+            
+            // c) first interpretation
             Console.WriteLine("\n\nc) Ordered per category personal first, work second list");
             bob.ShowTasksPersonalToWorkCategory();  
             
+            // c) second interpretation
+            Console.WriteLine("\n\nc) second interpretation...");
+            bob.ShowTasksWithCategory(Task.Category.Personal);
+            bob.ShowTasksWithCategory(Task.Category.Work);
+            
+            
+            // d) first interpretation
             Console.WriteLine("\n\nd) Ordered per state waiting, in execution and done list");
             bob.ShowTasksSortedByStateOfExecution();
             
+            // d) second interpretation
+            Console.WriteLine("\n\nd) second interpretation...");
+            bob.ShowTasksWithState(Task.State.Done);
+            bob.ShowTasksWithState(Task.State.Waiting);
+            bob.ShowTasksWithState(Task.State.InExecution);
+
             
             Console.WriteLine("\n\ne) List after \"Done\" state removed");
             bob.RemoveDoneTasks();

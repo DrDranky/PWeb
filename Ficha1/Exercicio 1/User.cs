@@ -44,6 +44,7 @@ namespace Ex1
             ShowTasks(delayedTasks);
         }
 
+        //first approach for b)
         public void ShowTasksLowToHighPriority()
         {
             var lowPriorityTasks = _tasks.Where(task => task.TaskPriority == Task.Priority.Low).ToList();
@@ -58,6 +59,18 @@ namespace Ex1
             ShowTasks(highPriorityTasks);
         }
 
+        //second approach for b)
+        public void ShowTasksWithPriority(Task.Priority priority)
+        {
+            var tasksToShow = _tasks.Where(task => task.TaskPriority == priority).ToList();
+            
+            if (tasksToShow.Count == 0 ) return;
+            Console.WriteLine("Tasks with " + priority + " priority:");
+            Task.PrepareForPrint();
+            ShowTasks(tasksToShow);
+        }
+
+        //first approach for c)
         public void ShowTasksPersonalToWorkCategory()
         {
             var personalTasks = _tasks.Where(task => task.TaskCategory == Task.Category.Personal).ToList();
@@ -69,7 +82,19 @@ namespace Ex1
             ShowTasks(personalTasks);
             ShowTasks(workTasks);
         }
+        
+        //second approach for c)
+        public void ShowTasksWithCategory(Task.Category category)
+        {
+            var tasksToShow = _tasks.Where(task => task.TaskCategory == category).ToList();
+            
+            if (tasksToShow.Count == 0 ) return;
+            Console.WriteLine("Tasks on " + category + " category:");
+            Task.PrepareForPrint();
+            ShowTasks(tasksToShow);
+        }
 
+        //first approach for d)
         public void ShowTasksSortedByStateOfExecution()
         {
             var waitingTasks = _tasks.Where(task => task.TaskState == Task.State.Waiting).ToList();
@@ -82,6 +107,17 @@ namespace Ex1
             ShowTasks(waitingTasks);
             ShowTasks(inExecutionTasks);
             ShowTasks(doneTasks);
+        }
+        
+        //second approach for d)
+        public void ShowTasksWithState(Task.State state)
+        {
+            var tasksToShow = _tasks.Where(task => task.TaskState == state).ToList();
+            
+            if (tasksToShow.Count == 0 ) return;
+            Console.WriteLine("Tasks on state " + state);
+            Task.PrepareForPrint();
+            ShowTasks(tasksToShow);
         }
 
         public void RemoveDoneTasks()
@@ -96,7 +132,8 @@ namespace Ex1
         
         public void RemoveLowPriorityTasks()
         {
-            _tasks = _tasks.Except(_tasks.Where(task => task.TaskPriority == Task.Priority.Low).ToList()).ToList();
+            var lowPriorityTasks = _tasks.Where(task => task.TaskPriority == Task.Priority.Low).ToList();
+            _tasks = _tasks.Except(lowPriorityTasks).ToList();
         }
     }
 }
